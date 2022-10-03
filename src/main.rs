@@ -1,10 +1,16 @@
 mod args;
-use clap::Parser;
+mod fetch;
 
+use clap::Parser;
+use fetch::*;
 fn main() {
     let args = args::Args::parse();
-    println!("Word {}", args.word);
+    let word = args.word;
+    println!("Word {}", &word);
     println!("Synonym {}", args.synonym);
     println!("Antonym {}", args.antonym);
 
+    get_definition(&word);
+    get_synonym(&word);
+    get_antonym(&word);
 }
