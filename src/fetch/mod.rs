@@ -14,15 +14,7 @@ pub mod fetch {
     }
 
     pub fn get_definition(value: &String) ->  String {
-        let formatted = format!("{}{}", DICTIONARY_URL, value);
-
-        let body = reqwest::blocking::get(
-            formatted,).unwrap()
-            .text()
-            .unwrap();
-
-        println!("Here is the body {}", &body);
-        fetch_web_page(Kind::DICTIONARY);
+        print!("Fetching in defintion {}", fetch_web_page(Kind::DICTIONARY, value));
         return "hello".to_string();
     }
 
@@ -34,16 +26,19 @@ pub mod fetch {
         let formatted = format!("{}{}", THESAURUS_URL, value);
     }
 
-    fn fetch_web_page(kind: Kind) {
+    fn fetch_web_page(kind: Kind, value: &String) -> String {
+        let formatted: String;
         if kind == Kind::DICTIONARY {
-            println!("Were using dictionary")
+            formatted = format!("{}{}", DICTIONARY_URL, value);
+        } else {
+            formatted = format!("{}{}", THESAURUS_URL, value);
         }
-        else if kind == Kind::SYNONYM {
-            println!("Were using synonym")
-        }
-        else if kind == Kind::ANTONYM {
-            println!("Were using antonym")
-        }
+
+        let body = reqwest::blocking::get(
+            formatted,).unwrap()
+            .text()
+            .unwrap();
+        body
     }
 
 }
