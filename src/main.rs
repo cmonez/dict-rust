@@ -2,14 +2,14 @@ mod args;
 mod fetch;
 
 use clap::Parser;
-use fetch::*;
+use fetch::fetch::*;
+
 fn main() {
     let args = args::Args::parse();
     let word = args.word;
     println!("Word {}", &word);
     println!("Synonym {}", args.synonym);
     println!("Antonym {}", args.antonym);
-
     get_definition(&word);
     get_synonym(&word);
     get_antonym(&word);
