@@ -1,5 +1,6 @@
 mod args;
 mod fetch;
+mod parse;
 
 use clap::Parser;
 use fetch::fetch::*;
