@@ -2,6 +2,8 @@ use reqwest::{get, Response};
 const DICTIONARY_URL: &str = "https://www.dictionary.com/browse/";
 const THESAURUS_URL: &str = "https://www.thesaurus.com/browse/";
 
+use super::parse::*;
+
 pub mod fetch {
     use reqwest::StatusCode;
     use super::*;
@@ -14,7 +16,8 @@ pub mod fetch {
     }
 
     pub fn get_definition(value: &String) ->  String {
-        print!("Fetching in defintion {}", fetch_web_page(Kind::DICTIONARY, value));
+        // print!("Fetching in defintion {}", fetch_web_page(Kind::DICTIONARY, value));
+        parse::get_definition(&*fetch_web_page(Kind::DICTIONARY, value));
         return "hello".to_string();
     }
 
